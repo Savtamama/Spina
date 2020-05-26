@@ -35,10 +35,10 @@
         = icon('cog')
         = t('spina.preferences.title')
         = icon('caret-right')
-    %li{data: {turbolinks: false}, class: ('active' if %w[accounts users tenants].include? controller_name)}
-      = link_to spina.edit_admin_account_path do
-        = icon('user')
-        = t('spina.users.title')
+    %li
+      = link_to '/users', data: {turbolinks: false} do
+        = icon('customer-outline')
+        = t('spina.preferences.users')
         = icon('caret-right')
 
       %ul
