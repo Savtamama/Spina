@@ -16,7 +16,7 @@ $(document).on 'click', 'nav#primary a:not(.back-to-main-menu)', (e) ->
   clearTimeout(navigationTimer)
 
 $(document).on 'click', 'nav#primary > ul > li > a', (e) ->
-  if (this).attr('data-target') == 'outer-link'
+  if $(this).attr('data-target') == 'outer-link'
     e.preventDefault()
     window.location = $(this).attr('href')
   else
