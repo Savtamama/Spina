@@ -35,12 +35,6 @@
         = icon('cog')
         = t('spina.preferences.title')
         = icon('caret-right')
-    %li{class: 'not-active'}
-      = link_to '/users', data: {turbolinks: false, target: 'outer-link'} do
-        = icon('customer-outline')
-        = t('spina.preferences.users')
-        = icon('caret-right')
-
       %ul
         %li{class: ('active' if params[:action] == 'edit' && params[:controller] == 'spina/admin/accounts')}
           = link_to t('spina.preferences.account'), spina.edit_admin_account_path
@@ -63,3 +57,9 @@
           = link_to '#', class: 'back-to-main-menu' do
             = icon('caret-left')
             =t 'spina.main_menu'
+                    
+    %li{class: 'not-active'}
+      = link_to '/users', data: {turbolinks: false, target: 'outer-link'} do
+        = icon('customer-outline')
+        = t('spina.preferences.users')
+        = icon('caret-right')
