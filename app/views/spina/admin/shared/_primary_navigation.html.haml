@@ -35,15 +35,17 @@
         = icon('cog')
         = t('spina.preferences.title')
         = icon('caret-right')
+    %li{data: {turbolinks: false}, class: ('active' if %w[accounts users tenants].include? controller_name)}
+      = link_to spina.edit_admin_account_path do
+        = icon('user')
+        = t('spina.users.title')
+        = icon('caret-right')
 
       %ul
         %li{class: ('active' if params[:action] == 'edit' && params[:controller] == 'spina/admin/accounts')}
           = link_to t('spina.preferences.account'), spina.edit_admin_account_path
         %li{class: ('active' if params[:action] == 'style')}
           = link_to t('spina.preferences.style'), spina.style_admin_account_path
-        - if current_spina_user.admin?
-          %li{class: ('active' if %w[users].include? controller_name)}
-            = link_to t('spina.preferences.users'), spina.admin_users_path
         %li{class: ('active' if params[:action] == 'social')}
           = link_to t('spina.preferences.social_media'), spina.social_admin_account_path
         %li{class: ('active' if params[:action] == 'analytics')}
@@ -61,8 +63,3 @@
           = link_to '#', class: 'back-to-main-menu' do
             = icon('caret-left')
             =t 'spina.main_menu'
-
-    %li.bottom
-      = link_to spina.admin_logout_path, data: {turbolinks: false} do
-        = icon('power-off')
-        =t 'spina.logout'
