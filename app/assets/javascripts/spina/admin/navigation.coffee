@@ -16,11 +16,15 @@ $(document).on 'click', 'nav#primary a:not(.back-to-main-menu)', (e) ->
   clearTimeout(navigationTimer)
 
 $(document).on 'click', 'nav#primary > ul > li > a', (e) ->
-  if $(this).parent().find('ul').length > 0
+  if (this).attr('data-target') == 'outer-link'
     e.preventDefault()
+    window.location = $(this).attr('href')
+  else
+    if $(this).parent().find('ul').length > 0
+      e.preventDefault()
 
-    $(this).parent().siblings().removeClass('active')
-    $(this).parent().addClass('active')
+      $(this).parent().siblings().removeClass('active')
+      $(this).parent().addClass('active')
 
 # Clicking something from the primary menu adds the animation
 $(document).on 'click', 'nav#primary:not(.transformed) > ul > li > a', (e) ->

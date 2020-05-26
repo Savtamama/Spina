@@ -36,7 +36,7 @@
         = t('spina.preferences.title')
         = icon('caret-right')
     %li
-      = link_to '/users', data: {turbolinks: false} do
+      = link_to '/users', data: {turbolinks: false, target: 'outer-link'} do
         = icon('customer-outline')
         = t('spina.preferences.users')
         = icon('caret-right')
