@@ -30,12 +30,12 @@
         - if lookup_context.exists? "spina/admin/hooks/#{ plugin.namespace }/_primary_navigation"
           = render "spina/admin/hooks/#{ plugin.namespace }/primary_navigation", plugin: plugin
 
-    %li{class: ('active' if %w[accounts users tenants].include? controller_name)}
+    %li{class: ('active' if %w[accounts account users tenants].include? controller_name)}
       = link_to spina.edit_admin_account_path do
         = icon('cog')
         = t('spina.preferences.title')
         = icon('caret-right')
-    %li
+    %li{class: ('not-active'}
       = link_to '/users', data: {turbolinks: false, target: 'outer-link'} do
         = icon('customer-outline')
         = t('spina.preferences.users')
