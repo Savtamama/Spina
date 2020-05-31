@@ -59,7 +59,7 @@
             =t 'spina.main_menu'
                     
     %li{class: 'not-active'}
-      = link_to '/users', data: {turbolinks: false, target: 'outer-link'} do
+      = link_to Spina.config.users_path, data: {turbolinks: false, target: 'outer-link'} do
         = icon('customer-outline')
         = t('spina.preferences.users')
         = icon('caret-right')
