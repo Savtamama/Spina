@@ -26,22 +26,33 @@ Trix.config.blockAttributes = $.extend Trix.config.blockAttributes, {
     terminal: true
     breakOnReturn: true
     group: false    
+}
+
+Trix.config.textAttributes = $.extend Trix.config.textAttributes, {
   textAlignJustify:
-    tagName: "p"
-    style: { "textAlign": "justify" }
+    style: { "textAlign": "justify" },
+    parser: function(element) {
+      return element.style.textAlign === "justify"
+    },
     inheritable: true
   textAlignCenter:
-    tagName: "p"
-    style: { "textAlign": "center" }
+    style: { "textAlign": "center" },
+    parser: function(element) {
+      return element.style.textAlign === "center"
+    },
     inheritable: true
   textAlignLeft:
-    tagName: "p"
-    style: { "textAlign": "left" }
+    style: { "textAlign": "left" },
+    parser: function(element) {
+      return element.style.textAlign === "left"
+    },
     inheritable: true
   textAlignRight:
-    tagName: "p"
-    style: { "textAlign": "right" }
-    inheritable: true    
+    style: { "textAlign": "right" },
+    parser: function(element) {
+      return element.style.textAlign === "right"
+    },
+    inheritable: true
 }
 
 Trix.config.lang = $.extend Trix.config.lang, {
@@ -89,13 +100,11 @@ Trix.config.toolbar =
         <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="#{Trix.config.lang.numbers}" tabindex="-1">#{Trix.config.lang.numbers}</button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="#{Trix.config.lang.outdent}" tabindex="-1">#{Trix.config.lang.outdent}</button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="#{Trix.config.lang.indent}" tabindex="-1">#{Trix.config.lang.indent}</button>
-      </span>
-      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">        
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignLeft" title="#{Trix.config.lang.text_left}" tabindex="-1"><span class="fas fa-align-left"></span></button>
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignCenter" title="#{Trix.config.lang.text_center}" tabindex="-1"><span class="fas fa-align-center"></span></button>
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignJustify" title="#{Trix.config.lang.text_justify}" tabindex="-1"><span class="fas fa-align-justify"></span></button>
-        <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignRight" title="#{Trix.config.lang.text_right}" tabindex="-1"><span class="fas fa-align-right"></span></button>
-      </span>      
+        <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignRight" title="#{Trix.config.lang.text_right}" tabindex="-1"><span class="fas fa-align-right"></span></button>        
+      </span>
     </div>
     <div class="trix-dialogs" data-trix-dialogs>
       <div class="trix-dialog trix-dialog--link" data-trix-dialog="href" data-trix-dialog-attribute="href">
