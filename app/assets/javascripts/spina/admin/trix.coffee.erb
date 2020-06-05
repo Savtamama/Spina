@@ -32,22 +32,22 @@ Trix.config.textAttributes = $.extend Trix.config.textAttributes, {
   textAlignJustify:
     style: { "textAlign": "justify" }
     parser: (element) ->
-      element.style.textAlign === "justify"
+      element.style.textAlign == "justify"
     inheritable: true
   textAlignCenter:
     style: { "textAlign": "center" }
     parser: (element) ->
-      element.style.textAlign === "center"
+      element.style.textAlign == "center"
     inheritable: true
   textAlignLeft:
     style: { "textAlign": "left" }
     parser: (element) ->
-      element.style.textAlign === "left"
+      element.style.textAlign == "left"
     inheritable: true
   textAlignRight:
     style: { "textAlign": "right" }
     parser: (element) ->
-      element.style.textAlign === "right"
+      element.style.textAlign == "right"
     inheritable: true
 }
 
