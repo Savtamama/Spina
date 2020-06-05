@@ -13,10 +13,12 @@
     = stylesheet_link_tag 'spina/admin/application', data: {turbolinks_track: true}
 
     /[if lt IE 9]
-      = javascript_include_tag '//html5shiv.googlecode.com/svn/trunk/html5.js', data: {turbolinks_track: true}
+      = javascript_include_tag '//html5shiv.googlecode.com/svn/trunk/html5.js', data: {turbolinks_track: true}      
 
     / JavaScript
+    = javascript_include_tag '//kit.fontawesome.com/0ac9b99d0a.js', data: {crossorigin: 'anonymous'}
     = javascript_include_tag 'spina/admin/application', data: {turbolinks_track: true}
+    
     = yield(:plugin_stylesheets)
 
     / Plugins
