@@ -30,28 +30,24 @@ Trix.config.blockAttributes = $.extend Trix.config.blockAttributes, {
 
 Trix.config.textAttributes = $.extend Trix.config.textAttributes, {
   textAlignJustify:
-    style: { "textAlign": "justify" },
-    parser: function(element) {
-      return element.style.textAlign === "justify"
-    },
+    style: { "textAlign": "justify" }
+    parser: (element) ->
+      element.style.textAlign === "justify"
     inheritable: true
   textAlignCenter:
-    style: { "textAlign": "center" },
-    parser: function(element) {
-      return element.style.textAlign === "center"
-    },
+    style: { "textAlign": "center" }
+    parser: (element) ->
+      element.style.textAlign === "center"
     inheritable: true
   textAlignLeft:
-    style: { "textAlign": "left" },
-    parser: function(element) {
-      return element.style.textAlign === "left"
-    },
+    style: { "textAlign": "left" }
+    parser: (element) ->
+      element.style.textAlign === "left"
     inheritable: true
   textAlignRight:
-    style: { "textAlign": "right" },
-    parser: function(element) {
-      return element.style.textAlign === "right"
-    },
+    style: { "textAlign": "right" }
+    parser: (element) ->
+      element.style.textAlign === "right"
     inheritable: true
 }
 
@@ -62,9 +58,9 @@ Trix.config.lang = $.extend Trix.config.lang, {
   heading3: "H3"
   heading4: "H4"
   heading5: "H5"
-  heading6: "H6",
-  text_justify: "Text Align Justify",
-  text_left: "Text Align Left",
+  heading6: "H6"
+  text_justify: "Text Align Justify"
+  text_left: "Text Align Left"
   text_right: "Text Align Right"
 }
 
