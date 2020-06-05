@@ -31,25 +31,25 @@ Trix.config.blockAttributes = $.extend Trix.config.blockAttributes, {
 Trix.config.textAttributes = $.extend Trix.config.textAttributes, {
   textAlignJustify:
     tagName: "span"
-    style: { "textAlign": "justify" }
+    style: { "textAlign": "justify", "display": "block" }
     terminal: true
     breakOnReturn: false
     group: false
   textAlignCenter:
     tagName: "span"
-    style: { "textAlign": "center" }
+    style: { "textAlign": "center", "display": "block" }
     terminal: true
     breakOnReturn: false
     group: false
   textAlignLeft:
     tagName: "span"
-    style: { "textAlign": "left" }
+    style: { "textAlign": "left", "display": "block" }
     terminal: true
     breakOnReturn: false
     group: false
   textAlignRight:
     tagName: "span"
-    style: { "textAlign": "right" }
+    style: { "textAlign": "right", "display": "block" }
     terminal: true
     breakOnReturn: false
     group: false
@@ -92,7 +92,7 @@ Trix.config.toolbar =
       </span>
     </div>
     <div class="trix-button-row">
-      <span class="trix-button-group trix-button-group--block-tools">
+      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
         <button type="button" class="trix-button trix-button--icon trix-button--icon-image" data-trix-attribute="image" data-trix-action="image" title="#{Trix.config.lang.image}" tabindex="-1">#{Trix.config.lang.image}</button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" title="#{Trix.config.lang.quote}" tabindex="-1">#{Trix.config.lang.quote}</button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" title="#{Trix.config.lang.code}" tabindex="-1">#{Trix.config.lang.code}</button>
@@ -101,7 +101,7 @@ Trix.config.toolbar =
         <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="#{Trix.config.lang.outdent}" tabindex="-1">#{Trix.config.lang.outdent}</button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="#{Trix.config.lang.indent}" tabindex="-1">#{Trix.config.lang.indent}</button>
       </span>
-      <span class="trix-button-group trix-button-group--block-tools">        
+      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">        
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignLeft" title="#{Trix.config.lang.text_left}" tabindex="-1"><span class="fas fa-align-left"></span></button>
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignCenter" title="#{Trix.config.lang.text_center}" tabindex="-1"><span class="fas fa-align-center"></span></button>
         <button type="button" class="trix-button trix-button--text" data-trix-attribute="textAlignJustify" title="#{Trix.config.lang.text_justify}" tabindex="-1"><span class="fas fa-align-justify"></span></button>
