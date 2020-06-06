@@ -4,16 +4,16 @@ module Spina
       def link_to_add_structure_item_fields(f, &block)
         item = StructureItem.new
         structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
-        
-        fields = f.fields_for(:structure_items, item, child_index: item.object_id) do |builder|
-          build_structure_parts(f.object.page_part.name, item)
-          render("spina/admin/structure_items/fields", f: builder)
-        end
       
-        unless structure[:allow_multiple] && structure[:allow_multiple] == false
+        if structure[:allow_multiple] && structure[:allow_multiple] == false
           ""
         else
           
+          fields = f.fields_for(:structure_items, item, child_index: item.object_id) do |builder|
+            build_structure_parts(f.object.page_part.name, item)
+            render("spina/admin/structure_items/fields", f: builder)
+          end
+
           link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
             icon('plus')
           end
