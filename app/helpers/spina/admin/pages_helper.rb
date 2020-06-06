@@ -7,6 +7,8 @@ module Spina
       
         if structure[:allow_multiple] && structure[:allow_multiple] == false
           
+          puts "is allowing multiple"
+
           ""
 
         else
