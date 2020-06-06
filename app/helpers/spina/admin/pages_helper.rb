@@ -6,7 +6,9 @@ module Spina
         structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
       
         if structure[:allow_multiple] && structure[:allow_multiple] == false
+          
           ""
+
         else
           
           fields = f.fields_for(:structure_items, item, child_index: item.object_id) do |builder|
