@@ -18,7 +18,6 @@
     .structure-form-content
       = f.fields_for :page_partable do |ff|
         - if ff.structure_items.length == 0
-          new_item = ff.structure_items.new
-
+          new_item = ff.object.structure_items.new
         = ff.fields_for :structure_items, ff.object.structure_items.sort_by{|item| item.position.to_i } do |fff|
           = render 'spina/admin/structure_items/fields', f: fff
