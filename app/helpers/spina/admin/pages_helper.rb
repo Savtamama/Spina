@@ -5,7 +5,8 @@ module Spina
         item = StructureItem.new
         structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
         
-        puts "structure[:allow_multiple] #{structure[:allow_multiple]}"
+        puts "structure[:allow_multiple] == false #{structure[:allow_multiple] == false}"
+        puts "structure[:allow_multiple] == 'false' #{structure[:allow_multiple] == 'false'}"
 
         if structure && structure[:allow_multiple] && !structure[:allow_multiple]
           
