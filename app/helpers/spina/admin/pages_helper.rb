@@ -3,13 +3,21 @@ module Spina
     module PagesHelper
       def link_to_add_structure_item_fields(f, &block)
         item = StructureItem.new
-        fields = f.fields_for(:structure_items, item, child_index: item.object_id) do |builder|
-          build_structure_parts(f.object.page_part.name, item)
-          render("spina/admin/structure_items/fields", f: builder)
+        structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
+        
+        unless structure && !structure[:allow_multiple].nil? && structure[:allow_multiple] == false
+          
+          fields = f.fields_for(:structure_items, item, child_index: item.object_id) do |builder|
+            build_structure_parts(f.object.page_part.name, item)
+            render("spina/admin/structure_items/fields", f: builder)
+          end
+
+          link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
+            icon('plus')
+          end
+
         end
-        link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
-          icon('plus')
-        end
+
       end
 
       def build_structure_parts(name, item)
