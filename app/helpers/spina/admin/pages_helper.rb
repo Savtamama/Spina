@@ -7,9 +7,13 @@ module Spina
           build_structure_parts(f.object.page_part.name, item)
           render("spina/admin/structure_items/fields", f: builder)
         end
+
+        structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
+
         link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
           icon('plus')
-        end
+        end unless structure[:allow_multiple] && structure[:allow_multiple] == false
+
       end
 
       def build_structure_parts(name, item)
