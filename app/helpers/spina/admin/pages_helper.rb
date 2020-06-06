@@ -4,8 +4,10 @@ module Spina
       def link_to_add_structure_item_fields(f, &block)
         item = StructureItem.new
         structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
-      
-        if structure[:allow_multiple] && structure[:allow_multiple] == false
+        
+        puts "structure #{structure}"
+        
+        if structure && structure[:allow_multiple] && structure[:allow_multiple] == false
           
           puts "is allowing multiple"
 
