@@ -11,11 +11,13 @@ module Spina
         
         structure = current_theme.structures.find { |structure| structure[:name] == f.object.page_part.name }
 
-        puts "structure #{structure}"
-        
-        link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
-          icon('plus')
-        end unless structure[:allow_multiple] && structure[:allow_multiple] == false
+        unless structure[:allow_multiple] && structure[:allow_multiple] == false
+          ""
+        else
+          link_to '#', class: "add_structure_item_fields button button-link", data: {id: item.object_id, fields: fields.gsub("\n", "")} do
+            icon('plus')
+          end
+        end
 
       end
 
