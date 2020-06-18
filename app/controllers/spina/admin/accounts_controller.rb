@@ -29,7 +29,7 @@ module Spina
 
       def account_params
         params.require(:account).permit(:address, :city, :email, :name, :phone,
-                                        :postal_code, :preferences, :google_analytics,:hubspot_analytics
+                                        :postal_code, :preferences, :google_analytics, :hubspot_analytics,
                                         :google_site_verification, :facebook, :twitter, :google_plus,
                                         :instagram, :youtube, :linkedin,
                                         :kvk_identifier, :theme, :vat_identifier, :robots_allowed,
