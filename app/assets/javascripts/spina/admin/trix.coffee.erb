@@ -187,10 +187,11 @@ class EmbedController
       return
     attachment = new (Trix.Attachment)(@currentEmbed)
     @editor.insertAttachment attachment
-    @element.focus()
+    @element.focus()    
     return
 
   showEmbed: (embed) ->
+    console.log embed
     @currentEmbed = embed
     @embedContainerElement.style.display = 'block'
     return
