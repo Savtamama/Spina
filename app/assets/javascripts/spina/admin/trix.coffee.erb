@@ -175,7 +175,7 @@ class EmbedController
     return
 
   fetch: (value) ->
-    Rails.ajax
+    $.ajax
       url: '/youtube/' + encodeURIComponent(value)
       type: 'get'
       error: @reset.bind(this)
