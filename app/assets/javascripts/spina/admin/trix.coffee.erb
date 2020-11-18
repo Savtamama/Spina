@@ -111,6 +111,12 @@ Trix.config.toolbar =
             <input type="button" class="trix-button trix-button--dialog" value="#{Trix.config.lang.unlink}" data-trix-method="removeAttribute">
           </div>
         </div>
+        <div data-behavior="embed_container">
+          <div class="link_to_embed link_to_embed--new">
+            Would you like to embed media from this site?
+            <input class="btn btn-tertiary outline btn-small ml-3" type="button" data-behavior="embed_url" value="Yes, embed it">
+          </div>
+        </div>        
       </div>
     </div>
   """
@@ -137,8 +143,69 @@ class Spina.TrixAttachment
 
     this.editor.insertAttachment(attachment)
 
+class EmbedController
+  constructor = (element) ->
+    @pattern = /^https:\/\/([^\.]+\.)?youtube\.com\/watch\?v=(.*)/
+    @element = element
+    @editor = element.editor
+    @toolbar = element.toolbarElement
+    @hrefElement = @toolbar.querySelector('[data-trix-input][name=\'href\']')
+    @embedContainerElement = @toolbar.querySelector('[data-behavior=\'embed_container\']')
+    @embedElement = @toolbar.querySelector('[data-behavior=\'embed_url\']')
+    @reset()
+    @installEventHandlers()
+    return
+
+  installEventHandlers = ->
+    @hrefElement.addEventListener 'input', @didInput.bind(this)
+    @hrefElement.addEventListener 'focusin', @didInput.bind(this)
+    @embedElement.addEventListener 'click', @embed.bind(this)
+    return
+
+  didInput = (event) ->
+    value = event.target.value.trim()
+    matches = value.match(@pattern)
+    console.log value, matches
+    # When patterns are loaded, we can just fetch the embed code
+    if `matches != null`
+      @fetch matches[2]
+      # No embed code, just reset the form
+    else
+      @reset()
+    return
+
+  fetch = (value) ->
+    Rails.ajax
+      url: '/youtube/' + encodeURIComponent(value)
+      type: 'get'
+      error: @reset.bind(this)
+      success: @showEmbed.bind(this)
+    return
+
+  embed = (event) ->
+    if `this.currentEmbed == null`
+      return
+    attachment = new (Trix.Attachment)(@currentEmbed)
+    @editor.insertAttachment attachment
+    @element.focus()
+    return
+
+  showEmbed = (embed) ->
+    @currentEmbed = embed
+    @embedContainerElement.style.display = 'block'
+    return
+
+  reset = ->
+    @embedContainerElement.style.display = 'none'
+    @currentEmbed = null
+    return     
+
 document.addEventListener 'trix-file-accept', (e) ->
   e.preventDefault()
+
+document.addEventListener 'trix-initialize', (event) ->
+  new EmbedController(event.target)
+  return
 
 $(document).on 'click', '[data-trix-attribute="image"]', Spina.TrixAttachment.imageSelect
 
