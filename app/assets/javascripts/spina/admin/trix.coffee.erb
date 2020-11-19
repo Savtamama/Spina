@@ -145,7 +145,7 @@ class Spina.TrixAttachment
 
 class EmbedController
   constructor: (element) ->
-    @pattern = /^https:\/\/([^\.]+\.)?youtube\.com\/watch\?v=(.*)/
+    @pattern = /^https:\/\/([^\.]+\.)?youtube\.com\/watch\?v=(.*)|^https:\/\/([^\.]+\.)?youtu\.be\/(.*)/
     @element = element
     @editor = element.editor
     @toolbar = element.toolbarElement
@@ -168,7 +168,11 @@ class EmbedController
     console.log value, matches
     # When patterns are loaded, we can just fetch the embed code
     if `matches != null`
-      @fetch matches[2]
+      if `matches[2] != null`
+        @fetch matches[2]
+      else
+        @fetch matches[4]
+      end      
       # No embed code, just reset the form
     else
       @reset()
