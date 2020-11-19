@@ -170,12 +170,13 @@ class EmbedController
     if `matches != null`
       if `matches[2] != null`
         @fetch matches[2]
+        # youtube.com domain
       else
         @fetch matches[4]
-      end      
-      # No embed code, just reset the form
+        # youtu.be domain
     else
       @reset()
+      # No embed code, just reset the form
     return
 
   fetch: (value) ->
