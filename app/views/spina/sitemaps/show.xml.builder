@@ -5,7 +5,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi"
     
     @pages.each do |page|
       xml.url do
-        xml.loc "#{request.protocol}#{request.host}#{page.materialized_path}"
+        xml.loc #{request.protocol}#{request.host}#{page.materialized_path == "/blog" && Spina::config[:blog_path] != "blog" ? "/" + Spina::config[:blog_path] : page.materialized_path}"
 
         # Translations
         page.translations.each do |translation|

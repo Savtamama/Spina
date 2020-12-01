@@ -74,11 +74,16 @@ module Spina
     end
 
     def deactivate_unused_view_templates(theme)
-      Page.active.where.not(view_template: theme.view_templates.map{|h|h[:name]}).update_all(active: false)
+      theme.view_templates.each do |v_t|
+        if page = Page.active.find_by_view_template(v_t[:name])
+          page.page_parts.where.not(name:v_t[:page_parts]).destroy_all
+          page.update_all(active: false)
+        end
+      end
     end
 
     def activate_used_view_templates(theme)
-      Page.where(active: false, view_template: theme.view_templates.map{|h|h[:name]}).update_all(active: true)
+      Page.where(active: false, view_template: theme.view_templates.map{|h|h[:name]} ).update_all(active: true)
     end
 
   end
