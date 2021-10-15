@@ -65,7 +65,8 @@ module Spina
       end
 
       def render_404
-        render file: "#{Rails.root}/public/404.html", status: 404
+        redirect_to root_path
+   
       end
 
       def render_with_template(page)
